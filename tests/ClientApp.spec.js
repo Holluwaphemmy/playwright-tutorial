@@ -7,7 +7,11 @@ test("Client App Login Tests", async ({ page }) => {
     .fill("playwrightautomationtutorial@yopmail.com");
   await page.locator("#userPassword").fill("Test@123");
   await page.locator("#login").click();
-  await page.waitForLoadState("networkidle");
+  // This method of waiting is flaxy and not encouraged by Playwright
+  //   await page.waitForLoadState("networkidle");
+
+  // A better wait mechanism is to waif for all the items to load
+  await page.locator(".card-body b").last().waitFor();
   const titles = await page.locator(".card-body b").allTextContents();
   console.log(titles);
 });
