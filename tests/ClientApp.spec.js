@@ -8,6 +8,6 @@ test("Client App Login Tests", async ({ page }) => {
   await page.locator("#userPassword").fill("Test@123");
   await page.locator("#login").click();
   await page.waitForLoadState("networkidle");
-  const titles = await page.locator(".card-body b").allTextContent();
+  const titles = await page.locator(".card-body b").allTextContents();
   console.log(titles);
 });
